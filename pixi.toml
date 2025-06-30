@@ -1,0 +1,12 @@
+[workspace]
+authors = ["Igors Dubanevics <26872977+igorsdub@users.noreply.github.com>"]
+channels = ["conda-forge"]
+name = "IntroToMake"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+matplotlib = ">=3.10.3,<4"
+numpy = ">=2.3.0,<3"
