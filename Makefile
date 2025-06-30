@@ -1,10 +1,10 @@
 # Makefile for analysis report
 #
 
-ALL_CSV = $(wildcard data/*.csv)
-INPUT_CSV = $(wildcard data/input_file_*.csv)
-DATA = $(filter-out $(INPUT_CSV),$(ALL_CSV))
-FIGURES = $(patsubst data/%.csv,output/figure_%.png,$(DATA))
+ALL_CSV = $(wildcard data/*.csv) # All CSV files in the data directory
+INPUT_CSV = $(wildcard data/input_file_*.csv) # CSV files that start with "input_file_"
+DATA = $(filter-out $(INPUT_CSV),$(ALL_CSV)) # Filter out input files. Leaves only genre-specific data files.
+FIGURES = $(patsubst data/%.csv,output/figure_%.png,$(DATA)) # Substitute data file name to figure files 
 
 .PHONY: all clean
 
