@@ -2,7 +2,7 @@
 
 .PHONY: all clean dag
 
-all: output/report.pdf dag
+all: output/report.pdf
 
 output/figure_1.png: data/input_file_1.csv scripts/generate_histogram.py
 	python scripts/generate_histogram.py -i data/input_file_1.csv -o output/figure_1.png
