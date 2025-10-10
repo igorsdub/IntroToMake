@@ -26,9 +26,14 @@ $(foreach genre,$(GENRES),\
 	)\
 )
 
-output/report.pdf: report/report.tex $(HISTOGRAMS) $(QQPLOTS)
-	cd report/ && pdflatex report.tex && mv report.pdf ../$@
+output/report.pdf: report/report.tex output/figure_1.png output/figure_2.png $(HISTOGRAMS) $(QQPLOTS)
+	tectonic --outdir output report/report.tex
+
+dag:
+	mkdir -p tmp/
+	make -Bnd -f Makefile | make2graph | dot -Tpdf -o tmp/dag.pdf
 
 clean:
 	rm -f output/report.pdf
 	rm -f $(HISTOGRAMS) $(QQPLOTS)
+	rm -f tmp/dag.pdf
