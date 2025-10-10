@@ -4,13 +4,13 @@
 
 all: results/report.pdf
 
-figures/figure_1.png: data/input_file_1.csv scripts/generate_histogram.py
-	python scripts/generate_histogram.py -i data/input_file_1.csv -o figures/figure_1.png
+figures/figure_1.pdf: data/input_file_1.csv scripts/generate_histogram.py
+	python scripts/generate_histogram.py -i data/input_file_1.csv -o figures/figure_1.pdf
 
-figures/figure_2.png: data/input_file_2.csv scripts/generate_histogram.py
-	python scripts/generate_histogram.py -i data/input_file_2.csv -o figures/figure_2.png
+figures/figure_2.pdf: data/input_file_2.csv scripts/generate_histogram.py
+	python scripts/generate_histogram.py -i data/input_file_2.csv -o figures/figure_2.pdf
 
-results/report.pdf: report/report.tex figures/figure_1.png figures/figure_2.png
+results/report.pdf: report/report.tex figures/figure_1.pdf figures/figure_2.pdf
 	tectonic --outdir results report/report.tex
 
 dag:
@@ -19,5 +19,5 @@ dag:
 
 clean:
 	rm -f results/report.pdf
-	rm -f figures/figure_*.png
+	rm -f figures/figure_*.pdf
 	rm -f tmp/dag.pdf
