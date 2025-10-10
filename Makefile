@@ -1,8 +1,8 @@
 # Makefile for analysis report
 
-.PHONY: all clean
+.PHONY: all clean dag
 
-all: output/report.pdf
+all: output/report.pdf dag
 
 output/figure_1.png: data/input_file_1.csv scripts/generate_histogram.py
 	python scripts/generate_histogram.py -i data/input_file_1.csv -o output/figure_1.png
@@ -11,7 +11,7 @@ output/figure_2.png: data/input_file_2.csv scripts/generate_histogram.py
 	python scripts/generate_histogram.py -i data/input_file_2.csv -o output/figure_2.png
 
 output/report.pdf: report/report.tex output/figure_1.png output/figure_2.png
-	cd report/ && pdflatex report.tex && mv report.pdf ../output/report.pdf
+	tectonic --outdir output report/report.tex
 
 dag:
 	mkdir -p tmp/
