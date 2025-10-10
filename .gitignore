@@ -5,3 +5,9 @@
 
 /tmp/*
 !/tmp/.gitkeep
+
+figures/*
+!figures/.gitkeep
+
+results/*
+!results/.gitkeep
