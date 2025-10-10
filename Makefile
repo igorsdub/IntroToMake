@@ -2,22 +2,22 @@
 
 .PHONY: all clean dag
 
-all: output/report.pdf
+all: results/report.pdf
 
-output/figure_1.png: data/input_file_1.csv scripts/generate_histogram.py
-	python scripts/generate_histogram.py -i data/input_file_1.csv -o output/figure_1.png
+figures/figure_1.png: data/input_file_1.csv scripts/generate_histogram.py
+	python scripts/generate_histogram.py -i data/input_file_1.csv -o figures/figure_1.png
 
-output/figure_2.png: data/input_file_2.csv scripts/generate_histogram.py
-	python scripts/generate_histogram.py -i data/input_file_2.csv -o output/figure_2.png
+figures/figure_2.png: data/input_file_2.csv scripts/generate_histogram.py
+	python scripts/generate_histogram.py -i data/input_file_2.csv -o figures/figure_2.png
 
-output/report.pdf: report/report.tex output/figure_1.png output/figure_2.png
-	tectonic --outdir output report/report.tex
+results/report.pdf: report/report.tex figures/figure_1.png figures/figure_2.png
+	tectonic --outdir results report/report.tex
 
 dag:
 	mkdir -p tmp/
 	make -Bnd -f Makefile | make2graph | dot -Tpdf -o tmp/dag.pdf
 
 clean:
-	rm -f output/report.pdf
-	rm -f output/figure_*.png
+	rm -f results/report.pdf
+	rm -f figures/figure_*.png
 	rm -f tmp/dag.pdf
